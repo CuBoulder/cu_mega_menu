@@ -135,7 +135,7 @@ function cu_mega_menu_entity_info() {
         // 'admin' key is used by the Field UI to provide field and
         // display UI pages.
         'admin' => array(
-          'path' => 'admin/structure/mega-menu-configure',
+          'path' => 'admin/structure/cu-mega-menu/configure',
           'access arguments' => array('administer cu_mega_menu entities'),
         ),
       ),
@@ -208,6 +208,17 @@ function cu_mega_menu_uri($entity) {
  */
 function cu_mega_menu_menu() {
 
+  $items['admin/structure/cu-mega-menu/configure'] = array(
+    'title' => 'Configure Mega Menus',
+    'description' => 'Create content for main menu items.',
+    'page callback' => 'cu_mega_menu_list_entities',
+    'access arguments' => array('administer cu_mega_menu entities'),
+  );
+  $items['admin/structure/cu-mega-menu/configure/list'] = array(
+    'title' => 'List',
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+    'access arguments' => array('administer cu_mega_menu entities'),
+  );
 
   // This provides a place for Field API to hang its own
   // interface and has to be the same as what was defined
@@ -231,6 +242,7 @@ function cu_mega_menu_menu() {
   $items['admin/structure/mega-menu/list'] = array(
     'title' => 'List',
     'type' => MENU_DEFAULT_LOCAL_TASK,
+    'access arguments' => array('create cu_mega_menu entities'),
   );
 
   // The page to view our entities - needs to follow what
